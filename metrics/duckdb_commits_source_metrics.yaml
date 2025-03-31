@@ -1,0 +1,68 @@
+# Metrics View YAML
+# Reference documentation: https://docs.rilldata.com/reference/project-files/metrics-views
+
+version: 1
+type: metrics_view
+
+model: duckdb_commits_source # Choose a model to underpin your metrics
+timeseries: author_date # Choose a timestamp column (if any) from your model
+
+dimensions:
+  - column: commit_hash
+    name: commit_hash
+    display_name: Commit Hash
+  - column: commit_msg
+    name: commit_msg
+    display_name: Commit_msg
+  - column: author_name
+    name: author_name
+    display_name: Author Name
+  - column: author_email
+    name: author_email
+    display_name: Author Email
+  - column: merge
+    name: merge
+    display_name: Merge
+measures:
+  - expression: count(commit_hash)
+    name: total_commits_measure
+    display_name: Total Commits
+    format_preset: humanize
+    description: total number of commits in the duckdb repository
+    valid_percent_of_total: true
+  - expression: count(distinct author_email)
+    name: unique_authors_measure
+    display_name: Unique Authors
+    format_preset: humanize
+    description: the number of unique authors who have made commits
+    valid_percent_of_total: true
+  - expression: count(case when merge then 1 end)
+    name: total_merge_commits_measure
+    display_name: Total Merge Commits
+    format_preset: humanize
+    description: total number of merge commits in the repository
+    valid_percent_of_total: true
+  - expression: avg(length(commit_msg))
+    name: average_commit_message_length_measure
+    display_name: Average Commit Message Length
+    format_preset: humanize
+    description: the average length of commit messages
+    valid_percent_of_total: false
+  - expression: count(case when not merge then 1 end)
+    name: total_non_merge_commits_measure
+    display_name: Total Non-Merge Commits
+    format_preset: humanize
+    valid_percent_of_total: true
+    description: the total number of non-merge commits in the repository
+  - expression: min(author_date)
+    name: earliest_commit_date_measure
+    display_name: Earliest Commit Date
+    format_preset: humanize
+    description: the date of the earliest commit in the repository
+    valid_percent_of_total: false
+  - expression: max(author_date)
+    name: latest_commit_date_measure
+    display_name: Latest Commit Date
+    format_preset: humanize
+    description: the date of the most recent commit in the repository
+    valid_percent_of_total: false
