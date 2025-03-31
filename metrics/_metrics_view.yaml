@@ -33,3 +33,8 @@ measures:
     format_preset: humanize
     description: sum of deleted lines
     valid_percent_of_total: true
+  - expression: sum(deleted_lines) / (sum(added_lines) + sum(deleted_lines))
+    name: pct_code_deletion
+    display_name: Code Deletion %
+    format_preset: humanize
+    valid_percent_of_total: false

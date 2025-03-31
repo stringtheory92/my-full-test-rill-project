@@ -1,0 +1,43 @@
+# Metrics View YAML
+# Reference documentation: https://docs.rilldata.com/reference/project-files/metrics-views
+
+version: 1
+type: metrics_view
+
+model: advanced_commits__model # Choose a model to underpin your metrics
+timeseries: author_date # Choose a timestamp column (if any) from your model
+
+dimensions:
+  - column: directory_path
+    name: directory_path
+    display_name: Directory Path
+  - column: commit_msg
+    name: commit_msg
+    display_name: Commit Message
+  - column: filename
+    name: filename
+    display_name: File Name
+  - column: author_name
+    name: author_name
+    display_name: Author Name
+measures:
+  - expression: SUM(total_line_changes)
+    name: sum_of_total_line_changes
+    display_name: Total Number of Lines Changed
+    format_preset: humanize
+    valid_percent_of_total: false
+  - expression: SUM(net_line_changes)
+    name: sum_of_net_line_changes
+    display_name: Net Number of Lines Changed
+    format_preset: humanize
+    valid_percent_of_total: false
+  - expression: SUM(num_commits)
+    name: sum_of_num_commits
+    display_name: Number of Commits
+    format_preset: humanize
+    valid_percent_of_total: false
+  - expression: sum(deleted_lines) / (sum(added_lines) + sum(deleted_lines))
+    name: pct_code_deletion
+    display_name: Code Deletion %
+    format_preset: humanize
+    valid_percent_of_total: false
