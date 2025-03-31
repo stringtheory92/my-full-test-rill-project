@@ -1,0 +1,6 @@
+type: model
+sql: SELECT {{ if incremental }} {{ .state.max_val }} + 1 {{ else }} 0 {{ end}} AS val, now() AS inserted_on
+state:
+  sql: SELECT MAX(val) as max_val FROM incremental_model
+incremental: true
+

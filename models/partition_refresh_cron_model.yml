@@ -1,0 +1,8 @@
+type: model
+incremental: true
+partitions:
+  sql: select range as num from range(0,10)
+sql: select {{ .partition.num }} as num, now() as inserted_on
+refresh: 
+  cron: "0 0 1 * *"
+
