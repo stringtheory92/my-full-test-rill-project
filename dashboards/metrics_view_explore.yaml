@@ -1,0 +1,12 @@
+# Explore YAML
+# Reference documentation: https://docs.rilldata.com/reference/project-files/explore-dashboards
+
+type: explore
+
+display_name: "Commits Model Metrics Dashboard"
+metrics_view: commits__model_metrics
+
+dimensions: '*'
+measures:
+  expr: "*"
+  time_range: P1M
