@@ -1,12 +1,12 @@
 # Explore YAML
 # Reference documentation: https://docs.rilldata.com/reference/project-files/explore-dashboards
 
-# type: explore
+type: explore
 
-# display_name: "Commits Model Metrics Dashboard"
-# metrics_view: _metrics_view
+display_name: "Commits Model Metrics Dashboard"
+metrics_view: _metrics_view
 
-# dimensions: '*'
-# measures:
-#   expr: "*"
+dimensions: '*'
+measures:
+  expr: "*"
 
