@@ -4,22 +4,20 @@
 type: explore
 metrics_view: advanced_metrics_view
 
-dimensions: '*'
-measures: '*'
+dimensions: "*"
+measures: "*"
 display_name: "Advanced Metrics View dashboard"
-
 
 # theme: theme.yaml
 
-time_ranges: 
- - PT15M 
- - PT1H
- - PT6H
- - P7D
+time_ranges:
+  - PT15M
+  - PT1H
+  - PT6H
+  - P7D
 
 time_zones:
- - America/New_York
-
-security:
- access: "{{ .user.admin }} AND '{{ .user.domain }}' == 'rilldata.com'"
+  - America/New_York
+# security:
+#  access: "{{ .user.admin }} AND '{{ .user.domain }}' == 'rilldata.com'"
 
