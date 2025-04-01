@@ -6,7 +6,7 @@ metrics_view: advanced_metrics_view
 
 dimensions: '*'
 measures: '*'
-display_name: Advanced Metrics View dashboard
+display_name: "Advanced Metrics View dashboard"
 
 
 # theme: theme.yaml
