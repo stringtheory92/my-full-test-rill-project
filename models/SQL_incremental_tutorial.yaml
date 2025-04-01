@@ -1,0 +1,22 @@
+type: model
+materialize: true
+
+connector: "bigquery"
+
+incremental: true
+state:
+  sql: select max(date) as max_date from SQL_incremental_tutorial
+
+sql:
+  #normally would want to set incremental to where DATE > '{{.state.max_date}}' to only append new rows.
+  select *, parse_date('%Y%m%d', cast(d_datekey as string)) as date
+  from rilldata.ssb_100.date
+  {{if incremental}}
+  where parse_date('%Y%m%d', cast(d_datekey as string)) = '{{.state.max_date}}'
+  {{else}}
+  limit 10
+  {{end}}
+
+output:
+  connector: duckdb
+  incremental_strategy: append
