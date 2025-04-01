@@ -4,9 +4,9 @@
 type: explore
 
 display_name: "Commits Model Metrics Dashboard"
-metrics_view: commits__model_metrics
+metrics_view: _metrics_view
 
 dimensions: '*'
 measures:
   expr: "*"
-  time_range: P1M
+
